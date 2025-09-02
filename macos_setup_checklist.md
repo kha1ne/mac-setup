@@ -1,6 +1,8 @@
-# macOS 2025 Master Setup Checklist
+# macOS 2025 Gold Standard Developer Setup Checklist
 
-A full checklist of macOS 2025 system settings and tweaks for developers, with step-by-step instructions.
+A merged checklist combining insights from Gabriel Drouin (2025), Robin Wieruch (2025), 
+Tania Rascia (2024), and the Master Setup Checklist (2025).  
+Focus: **System Settings only** (no apps or package managers).
 
 ---
 
@@ -15,22 +17,22 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
 - [ ] **Dock Settings**  
   - Auto-hide: System Settings → Desktop & Dock → *Automatically hide and show the Dock*.  
   - Resize icons: Adjust *Size* slider.  
-  - Remove apps: Drag out icons from Dock.  
-  - Keep only essential apps.
+  - Remove apps: Drag out icons.  
+  - Keep only essentials.
 
 - [ ] **Remove Recent Applications from Dock**  
   System Settings → Desktop & Dock → Disable *Show recent applications in Dock*.
 
 - [ ] **Hot Corners**  
-  System Settings → Desktop & Dock → Hot Corners → Assign actions (e.g., Mission Control, Desktop, Lock Screen).
+  System Settings → Desktop & Dock → Hot Corners → Assign actions (Mission Control, Desktop, Lock Screen).
 
 - [ ] **Stage Manager**  
-  Control Center → Stage Manager → Enable.
+  Control Center → Stage Manager → Enable (optional).
 
 - [ ] **Reduce Motion / Animations**  
   System Settings → Accessibility → Display → Enable *Reduce motion*.
 
-- [ ] **Increase Contrast**  
+- [ ] **Increase Contrast** (optional)  
   System Settings → Accessibility → Display → Enable *Increase contrast*.
 
 - [ ] **Night Shift**  
@@ -44,8 +46,8 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
   Finder → Settings → Advanced → Enable *Show all filename extensions*.
 
 - [ ] **Show Hidden Files**  
-  Press `Cmd + Shift + .` in Finder.  
-  Terminal (permanent):  
+  Shortcut: `Cmd + Shift + .`  
+  Permanent:  
   ```bash
   defaults write com.apple.finder AppleShowAllFiles -bool true
   killall Finder
@@ -67,17 +69,16 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
   Finder → Settings → Sidebar → Add/remove useful locations.
 
 - [ ] **Default Finder View (List/Column)**  
-  Open Finder window → View menu → Select List/Column → View → Show View Options → *Use as Defaults*.
+  Open Finder → View menu → Select preferred view → View → Show View Options → *Use as Defaults*.
 
 - [ ] **Show Full POSIX Path in Title Bar**  
-  Terminal:  
   ```bash
   defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
   killall Finder
   ```
 
-- [ ] **New Finder Windows → Home Folder**  
-  Finder → Settings → General → *New Finder windows show* → Home.
+- [ ] **New Finder Windows → Home/Downloads**  
+  Finder → Settings → General → *New Finder windows show* → Home/Downloads.
 
 ---
 
@@ -90,29 +91,27 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
   System Settings → Trackpad → Enable *Tap to click*.
 
 - [ ] **Three-Finger Drag**  
-  System Settings → Accessibility → Pointer Control → Trackpad Options → Enable → Three-Finger Drag.
+  System Settings → Accessibility → Pointer Control → Trackpad Options → Enable *Three-Finger Drag*.
 
 - [ ] **Natural Scrolling Toggle**  
   System Settings → Trackpad → Scroll & Zoom → Toggle *Natural scrolling*.
 
 - [ ] **Keyboard Key Repeat Speed**  
   System Settings → Keyboard → Key Repeat → Fast  
-  Delay Until Repeat → Short
+  Delay Until Repeat → Short.
 
 - [ ] **Disable Press-and-Hold Accents**  
-  Terminal:  
   ```bash
   defaults write -g ApplePressAndHoldEnabled -bool false
   ```
 
-- [ ] **Keyboard Shortcuts for Window Management**  
-  System Settings → Keyboard → Keyboard Shortcuts → Customize.
+- [ ] **Remap Keys**  
+  - Caps Lock → Control (common dev choice).  
+  - Caps Lock → Escape (alternative).  
+  System Settings → Keyboard → Modifier Keys.
 
-- [ ] **Rectangle Tiling Shortcuts**  
-  Rectangle app → Preferences → Set keybindings.
-
-- [ ] **Remap Caps Lock → Control**  
-  System Settings → Keyboard → Modifier Keys → Caps Lock → Control.
+- [ ] **Keyboard Shortcuts / Window Management**  
+  System Settings → Keyboard → Shortcuts → Customize.
 
 - [ ] **Enable Full Keyboard Access**  
   System Settings → Keyboard → Keyboard Navigation → Enable *Use keyboard navigation to move focus*.
@@ -127,14 +126,14 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
 - [ ] **Enable Firewall**  
   System Settings → Network → Firewall → Enable.
 
-- [ ] **Disable Siri**  
+- [ ] **Disable Siri (optional)**  
   System Settings → Siri & Spotlight → Disable *Ask Siri*.
 
-- [ ] **Disable Spotlight/Siri Suggestions**  
-  System Settings → Siri & Spotlight → Turn off unnecessary categories.
+- [ ] **Disable Siri/Spotlight Suggestions (optional)**  
+  System Settings → Siri & Spotlight → Turn off categories.
 
-- [ ] **Touch ID for sudo**  
-  Terminal:  
+- [ ] **Touch ID for sudo (optional)**  
+  Edit PAM config:  
   ```bash
   sudo nano /etc/pam.d/sudo
   ```  
@@ -142,7 +141,6 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
   ```
   auth sufficient pam_tid.so
   ```  
-  Save & exit.
 
 - [ ] **System Updates Auto-Check**  
   System Settings → General → Software Update → Enable *Automatically keep my Mac up to date*.
@@ -152,18 +150,15 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
 ## 5. System Behavior & Performance
 
 - [ ] **Faster Animations**  
-  Terminal:  
   ```bash
   defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
   defaults write com.apple.dock expose-animation-duration -float 0.1
   killall Dock
   ```
 
-- [ ] **Mission Control Tweaks**  
-  System Settings → Desktop & Dock → Mission Control → Adjust behavior.
-
-- [ ] **Mission Control Hotkeys**  
-  System Settings → Keyboard → Keyboard Shortcuts → Mission Control → Assign keys.
+- [ ] **Mission Control Tweaks & Hotkeys**  
+  System Settings → Desktop & Dock → Mission Control → Adjust.  
+  System Settings → Keyboard → Shortcuts → Mission Control → Assign keys.
 
 - [ ] **Screenshot Folder → ~/Screenshots**  
   ```bash
@@ -178,7 +173,7 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
   killall SystemUIServer
   ```
 
-- [ ] **Disable Screenshot Shadow**  
+- [ ] **Disable Screenshot Shadow (optional)**  
   ```bash
   defaults write com.apple.screencapture disable-shadow -bool true
   killall SystemUIServer
@@ -189,7 +184,16 @@ A full checklist of macOS 2025 system settings and tweaks for developers, with s
 ## 6. Defaults / System Apps
 
 - [ ] **Change Default Browser**  
-  System Settings → Desktop & Dock → Default web browser → Choose Chrome/Firefox.
+  System Settings → Desktop & Dock → Default web browser.
 
-- [ ] **Remove Unused Default Apps**  
-  Drag icons to folder or right-click → Remove from Dock.
+- [ ] **Remove Unused Default Apps from Dock**  
+  Drag icons out of Dock.
+
+---
+
+## ✅ Notes
+
+- Items marked **optional** = personal preference (accessibility, Siri, screenshot shadows, etc.).  
+- This list merges **blogs (Drouin, Wieruch, Rascia)** with **Master 2025 Checklist** into one reference.  
+- Covers **system settings only**; apps and package managers are intentionally excluded.
+
